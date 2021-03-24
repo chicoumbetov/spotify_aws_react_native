@@ -25,3 +25,9 @@ export type YourLibraryParamList = {
 export type PremiumParamList = {
   PremiumScreen: undefined;
 };
+
+export type Album ={
+  id: string;
+  imageUri: string;
+  artistsHeadline: string;
+}

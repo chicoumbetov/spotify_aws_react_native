@@ -68,7 +68,7 @@ function HomeNavigator() {
       <TabOneStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+        options={{ headerTitle: 'Home' }}
       />
     </TabOneStack.Navigator>
   );
@@ -82,7 +82,7 @@ function SearchNavigator() {
       <TabTwoStack.Screen
         name="SearchScreen"
         component={SearchScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{ headerTitle: 'Search' }}
       />
     </TabTwoStack.Navigator>
   );
@@ -96,7 +96,7 @@ function YourLibraryNavigator() {
       <YourLibraryStack.Screen
         name="YourLibraryScreen"
         component={YourLibraryScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{ headerTitle: 'Your Library' }}
       />
     </YourLibraryStack.Navigator>
   );
@@ -110,7 +110,7 @@ function PremiumNavigator() {
       <PremiumStack.Screen
         name="PremiumScreen"
         component={PremiumScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{ headerTitle: 'Premium' }}
       />
     </PremiumStack.Navigator>
   );
