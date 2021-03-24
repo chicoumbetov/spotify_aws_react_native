@@ -10,6 +10,7 @@ import SearchScreen from '../screens/SearchScreen';
 import YourLibraryScreen from '../screens/YourLibraryScreen';
 import PremiumScreen from '../screens/PremiumScreen';
 import { BottomTabParamList, HomeParamList, SearchParamList, YourLibraryParamList, PremiumParamList } from '../types';
+import AlbumScreen from '../screens/AlbumScreen';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -24,14 +25,14 @@ export default function BottomTabNavigator() {
         name="Home"
         component={HomeNavigator}
         options={{
-          tabBarIcon: ({ color }) => <Entypo name="home" size={30} color={color} style={{ marginBottom: -3 }}/>,
+          tabBarIcon: ({ color }) => <Entypo name="home" size={30} color={color} style={{ marginBottom: -3 }} />,
         }}
       />
       <BottomTab.Screen
         name="Search"
         component={SearchNavigator}
         options={{
-          tabBarIcon: ({ color }) => <EvilIcons name="search" size={30} color={color} style={{ marginBottom: -3 }}/>,
+          tabBarIcon: ({ color }) => <EvilIcons name="search" size={30} color={color} style={{ marginBottom: -3 }} />,
         }}
       />
       <BottomTab.Screen
@@ -45,46 +46,46 @@ export default function BottomTabNavigator() {
         name="Premium"
         component={PremiumNavigator}
         options={{
-          tabBarIcon: ({ color }) => <FontAwesome name="spotify" size={30} color={color} style={{ marginBottom: -3 }}/>,
+          tabBarIcon: ({ color }) => <FontAwesome name="spotify" size={30} color={color} style={{ marginBottom: -3 }} />,
         }}
       />
     </BottomTab.Navigator>
   );
 }
 
-// You can explore the built-in icon families and icons on the web at:
-// https://icons.expo.fyi/
-function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
-}
-
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<HomeParamList>();
+const HomeStack = createStackNavigator<HomeParamList>();
 
 function HomeNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
+    <HomeStack.Navigator>
+      <HomeStack.Screen
         name="HomeScreen"
         component={HomeScreen}
         options={{ headerTitle: 'Home' }}
       />
-    </TabOneStack.Navigator>
+
+      <HomeStack.Screen
+        name="AlbumScreen"
+        component={AlbumScreen}
+        options={{ headerTitle: 'Album' }}
+      />
+    </HomeStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<SearchParamList>();
+const SearchStack = createStackNavigator<SearchParamList>();
 
 function SearchNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
+    <SearchStack.Navigator>
+      <SearchStack.Screen
         name="SearchScreen"
         component={SearchScreen}
         options={{ headerTitle: 'Search' }}
       />
-    </TabTwoStack.Navigator>
+    </SearchStack.Navigator>
   );
 }
 
