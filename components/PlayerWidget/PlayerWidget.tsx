@@ -1,9 +1,10 @@
 import { AntDesign, FontAwesome } from '@expo/vector-icons';
-import React, { useEffect } from 'react'
-import { Text, Image, View } from 'react-native'
+import { Audio } from 'expo-av';
+import React, { useEffect, useState } from 'react';
+import { Image, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import styles from './styles';
 
-import { Audio, Video } from 'expo-av';
 
 const song = {
     id: '1',
@@ -15,22 +16,43 @@ const song = {
 
 const PlayerWidget = () => {
 
+    const [sound, setSound] = useState<Sound|null>(null)
+    const [isPlaying, setIsPlaying] = useState<boolean>(true)
+
     const onPlaybackStatusUpdate = (status) => {
-        console.log(status)
+        //console.log(status)
+        setIsPlaying(status.isPlaying)
     }
 
     const playCurrentSong = async () => {
-        const { sound } = await Audio.Sound.createAsync(
+        if (sound) {
+            await sound.unloadAsync();
+        }
+
+        const { sound: newSound } = await Audio.Sound.createAsync(
             { uri: song.uri },
-            { shouldPlay: true},
+            { shouldPlay: isPlaying },
             onPlaybackStatusUpdate
         );
+
+        setSound(newSound)
     }
 
     useEffect(() => {
         //play the song
         playCurrentSong();
     }, [])
+
+    const onPlayPausePress = async () => {
+        if (!sound) {
+            return;
+        }
+        if (isPlaying) {
+            await sound.stopAsync();
+        } else {
+            await sound.playAsync();
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -45,7 +67,10 @@ const PlayerWidget = () => {
                 </View>
                 <View style={styles.iconsContainer}>
                     <AntDesign name="hearto" size={30} color={"white"} />
-                    <FontAwesome name="play" size={30} color={"white"} />
+                    <TouchableOpacity onPress={onPlayPausePress} >
+                        <FontAwesome name={isPlaying ? "pause" : "play"} size={30} color={"white"} />
+                    </TouchableOpacity>
+
                 </View>
             </View>
         </View>
