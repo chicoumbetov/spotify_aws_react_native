@@ -24,7 +24,7 @@ const PlayerWidget = () => {
 
     // PAUSE/ PLAY IMPLEMENTATION
     const onPlaybackStatusUpdate = (status) => {
-        console.log(status)
+        //console.log(status)
         setIsPlaying(status.isPlaying);
         setDuration(status.durationMillis);
         setPosition(status.positionMillis);
