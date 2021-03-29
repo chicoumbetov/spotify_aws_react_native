@@ -7,9 +7,16 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: '#212121',
         borderWidth: 2,
-        alignItems: 'center',
         borderColor: 'black',
+        //paddingVertical: 10,
+        padding: 10,
+    },
+    row: {
         flexDirection: 'row',
+    },
+    progress: {
+        height: 7,
+        backgroundColor: '#bcbcbc',
     },
     rightContainer: {
         flex: 1,
