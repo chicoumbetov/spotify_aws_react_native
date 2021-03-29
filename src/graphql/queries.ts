@@ -153,6 +153,7 @@ export const getSong = /* GraphQL */ `
     }
   }
 `;
+
 export const listSongs = /* GraphQL */ `
   query ListSongs(
     $filter: ModelSongFilterInput
